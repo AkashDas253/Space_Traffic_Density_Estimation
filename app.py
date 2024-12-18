@@ -2,17 +2,29 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-# Load the trained RandomForestRegressor model
-model = joblib.load('model/RandomForestRegressor.joblib')
-
-# Load the trained LabelEncoder
-location_encoder = joblib.load('model/label_encoder.joblib')
-
 # App title
 st.title("Space Traffic Density Prediction")
 
+# Add GitHub link in the app footer
+st.markdown("Check out the [GitHub Repository](https://github.com/your-username/your-repository-name) for the code and model files.")
+
 # Sidebar for user inputs
 st.sidebar.header("Input Features")
+
+# Dropdown to select model
+model_options = {
+    'Random Forest Regressor': 'model/RandomForestRegressor.joblib',
+    'Linear Regression': 'model/LinearRegression.joblib', 
+    'Support Vector Regressor': 'model/SVR.joblib',
+}
+selected_model = st.sidebar.selectbox("Select Model", list(model_options.keys()))
+
+# Load the selected model
+model_path = model_options[selected_model]
+model = joblib.load(model_path)
+
+# Load the trained LabelEncoder
+location_encoder = joblib.load('model/label_encoder.joblib')
 
 # Dropdown for location
 locations = list(location_encoder.classes_)
