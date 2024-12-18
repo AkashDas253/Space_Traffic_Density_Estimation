@@ -5,9 +5,6 @@ import pandas as pd
 # App title
 st.title("Space Traffic Density Prediction")
 
-# Add GitHub link in the app footer
-st.markdown("Check out the [GitHub Repository](https://github.com/your-username/your-repository-name) for the code and model files.")
-
 # Sidebar for user inputs
 st.sidebar.header("Input Features")
 
