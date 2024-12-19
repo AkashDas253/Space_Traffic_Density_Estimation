@@ -22,7 +22,7 @@ except Exception as e:
     st.stop()
 
 # Main Section
-st.header("Input Details")
+st.header("📝 Input Details")
 
 # Date Input
 selected_date = st.date_input(
