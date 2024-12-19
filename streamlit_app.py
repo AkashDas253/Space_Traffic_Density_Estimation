@@ -5,11 +5,10 @@ import datetime
 
 # Define the CSS to hide the GitHub icon
 hide_github_icon_css = """
-<style>
-.viewerBadge_container__1QSob {
-    display: none;
+#MainMenu {
+  visibility: hidden;
 }
-</style>
+
 """
 
 # Inject the CSS into the Streamlit app
