@@ -12,6 +12,10 @@ hide_github_icon_css = """
 </style>
 """
 
+# Inject the CSS into the Streamlit app
+st.markdown(hide_github_icon_css, unsafe_allow_html=True)
+
+
 # App Title
 st.title("🌌 Space Traffic Density Prediction")
 
