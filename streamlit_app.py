@@ -22,11 +22,11 @@ except Exception as e:
     st.stop()
 
 # Main Section
-st.header("🗓️ Input Details")
+st.header("Input Details")
 
 # Date Input
 selected_date = st.date_input(
-    "Select a Date",
+    "🗓️ Select a Date",
     min_value=datetime.date(2000, 1, 1),
     max_value=datetime.date(2100, 12, 31),
     value=datetime.date(2024, 12, 19),
@@ -43,15 +43,28 @@ except Exception as e:
     st.error(f"Error loading locations: {e}")
     st.stop()
 
-# Object Types with Toggle Buttons
+# Object Types with Toggle Buttons in a 3x2 Layout
 st.header("🛰️ Object Types")
+col1, col2 = st.columns(2)
+
+with col1:
+    asteroid_mining_ship = st.toggle("Asteroid Mining Ship", value=False)
+    manned_spacecraft = st.toggle("Manned Spacecraft", value=False)
+    satellite = st.toggle("Satellite", value=False)
+
+with col2:
+    scientific_probe = st.toggle("Scientific Probe", value=False)
+    space_debris = st.toggle("Space Debris", value=False)
+    space_station = st.toggle("Space Station", value=True)
+
+# Mapping toggles to object types
 object_types = {
-    "Object_Type_Asteroid Mining Ship": st.toggle("Asteroid Mining Ship", value=False),
-    "Object_Type_Manned Spacecraft": st.toggle("Manned Spacecraft", value=False),
-    "Object_Type_Satellite": st.toggle("Satellite", value=False),
-    "Object_Type_Scientific Probe": st.toggle("Scientific Probe", value=False),
-    "Object_Type_Space Debris": st.toggle("Space Debris", value=False),
-    "Object_Type_Space Station": st.toggle("Space Station", value=True),
+    "Object_Type_Asteroid Mining Ship": asteroid_mining_ship,
+    "Object_Type_Manned Spacecraft": manned_spacecraft,
+    "Object_Type_Satellite": satellite,
+    "Object_Type_Scientific Probe": scientific_probe,
+    "Object_Type_Space Debris": space_debris,
+    "Object_Type_Space Station": space_station,
 }
 
 # Prediction Button
