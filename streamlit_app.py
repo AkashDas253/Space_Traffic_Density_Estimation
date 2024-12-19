@@ -20,7 +20,7 @@ st.markdown(hide_toolbar_css, unsafe_allow_html=True)
 # App Title
 st.title("🌌 Space Traffic Density Prediction")
 
-st.markdown("[GitHub Repository](https://github.com/greedyknapsack/Space_Traffic_Density_Estimation/blob/main/readme.md)")
+st.markdown("[GitHub Repository](https://github.com/greedyknapsack/Space_Traffic_Density_Estimation/)")
 
 # Sidebar for Model Selection
 st.sidebar.header("Model Selection")
