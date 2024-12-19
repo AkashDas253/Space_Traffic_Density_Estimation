@@ -3,6 +3,15 @@ import joblib
 import pandas as pd
 import datetime
 
+# Define the CSS to hide the GitHub icon
+hide_github_icon_css = """
+<style>
+.viewerBadge_container__1QSob {
+    display: none;
+}
+</style>
+"""
+
 # App Title
 st.title("🌌 Space Traffic Density Prediction")
 
