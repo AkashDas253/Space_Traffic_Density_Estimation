@@ -67,38 +67,40 @@ object_types = {
     "Object_Type_Space Station": space_station,
 }
 
-# Prediction Button
-if st.button("🔮 Predict Traffic Density"):
-    # Prepare input data
-    input_data = {
-        'Location': [selected_location],
-        'Year': [year],
-        'Month': [month],
-        'Day': [day],
-        **{key: int(value) for key, value in object_types.items()},
-    }
-    input_df = pd.DataFrame(input_data)
+# Centered Prediction Button
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    if st.button("🔮 Predict Traffic Density"):
+        # Prepare input data
+        input_data = {
+            'Location': [selected_location],
+            'Year': [year],
+            'Month': [month],
+            'Day': [day],
+            **{key: int(value) for key, value in object_types.items()},
+        }
+        input_df = pd.DataFrame(input_data)
 
-    # Encode Location
-    try:
-        input_df['Location_Encoded'] = location_encoder.transform(input_df['Location'])
-        input_df = input_df.drop('Location', axis=1)
-    except ValueError as e:
-        st.error(f"Location encoding error: {e}")
-        st.stop()
+        # Encode Location
+        try:
+            input_df['Location_Encoded'] = location_encoder.transform(input_df['Location'])
+            input_df = input_df.drop('Location', axis=1)
+        except ValueError as e:
+            st.error(f"Location encoding error: {e}")
+            st.stop()
 
-    # Reorder columns to match the training data
-    columns_order = [
-        'Location_Encoded', 'Year', 'Month', 'Day',
-        'Object_Type_Asteroid Mining Ship', 'Object_Type_Manned Spacecraft',
-        'Object_Type_Satellite', 'Object_Type_Scientific Probe',
-        'Object_Type_Space Debris', 'Object_Type_Space Station'
-    ]
-    input_df = input_df[columns_order]
+        # Reorder columns to match the training data
+        columns_order = [
+            'Location_Encoded', 'Year', 'Month', 'Day',
+            'Object_Type_Asteroid Mining Ship', 'Object_Type_Manned Spacecraft',
+            'Object_Type_Satellite', 'Object_Type_Scientific Probe',
+            'Object_Type_Space Debris', 'Object_Type_Space Station'
+        ]
+        input_df = input_df[columns_order]
 
-    # Make Prediction
-    try:
-        prediction = model.predict(input_df)
-        st.success(f"🌟 Predicted Traffic Density: **{prediction[0]:.2f}**")
-    except ValueError as e:
-        st.error(f"Prediction Error: {e}")
+        # Make Prediction
+        try:
+            prediction = model.predict(input_df)
+            st.success(f"🌟 Predicted Traffic Density: **{prediction[0]:.2f}**")
+        except ValueError as e:
+            st.error(f"Prediction Error: {e}")
