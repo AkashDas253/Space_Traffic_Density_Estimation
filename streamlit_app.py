@@ -3,16 +3,18 @@ import joblib
 import pandas as pd
 import datetime
 
-# Define the CSS to hide the GitHub icon
-hide_github_icon_css = """
-#MainMenu {
-  visibility: hidden;
+# Define the CSS to hide the toolbar
+hide_toolbar_css = """
+<style>
+[data-testid="stToolbar"] {
+    display: none;
 }
-
+</style>
 """
 
 # Inject the CSS into the Streamlit app
-st.markdown(hide_github_icon_css, unsafe_allow_html=True)
+st.markdown(hide_toolbar_css, unsafe_allow_html=True)
+
 
 
 # App Title
