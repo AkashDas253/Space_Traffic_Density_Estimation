@@ -15,19 +15,20 @@ hide_toolbar_css = """
 # Inject the CSS into the Streamlit app
 st.markdown(hide_toolbar_css, unsafe_allow_html=True)
 
-
-
 # App Title
 st.title("🌌 Space Traffic Density Prediction")
-
 st.markdown("[GitHub Repository](https://github.com/greedyknapsack/Space_Traffic_Density_Estimation/)")
 
 # Sidebar for Model Selection
 st.sidebar.header("Model Selection")
 try:
+    # Define all the models and their paths
     model_options = {
         'Random Forest Regressor': 'model/RandomForestRegressor.joblib',
         'Linear Regression': 'model/LinearRegression.joblib',
+        'Ridge Regression': 'model/ridge_model.joblib',
+        'Lasso Regression': 'model/lasso_model.joblib',
+        'ElasticNet Regression': 'model/elasticnet_model.joblib',
         'Support Vector Regressor': 'model/SVR.joblib',
     }
     selected_model = st.sidebar.selectbox("Select Model", list(model_options.keys()))
@@ -64,14 +65,14 @@ st.header("🛰️ Object Types")
 col1, col2 = st.columns(2)
 
 with col1:
-    asteroid_mining_ship = st.toggle("Asteroid Mining Ship", value=False)
-    manned_spacecraft = st.toggle("Manned Spacecraft", value=False)
-    satellite = st.toggle("Satellite", value=False)
+    asteroid_mining_ship = st.checkbox("Asteroid Mining Ship", value=False)
+    manned_spacecraft = st.checkbox("Manned Spacecraft", value=False)
+    satellite = st.checkbox("Satellite", value=False)
 
 with col2:
-    scientific_probe = st.toggle("Scientific Probe", value=False)
-    space_debris = st.toggle("Space Debris", value=False)
-    space_station = st.toggle("Space Station", value=True)
+    scientific_probe = st.checkbox("Scientific Probe", value=False)
+    space_debris = st.checkbox("Space Debris", value=False)
+    space_station = st.checkbox("Space Station", value=True)
 
 # Mapping toggles to object types
 object_types = {
